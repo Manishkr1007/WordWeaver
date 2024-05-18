@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import Logo from '../Logo'
 import {FiMenu,FiX} from "react-icons/fi";
+import Profile from '../../components/profile'
 
 function Header() {
     const authStatus = useSelector((state) => state.auth.status)
@@ -16,7 +17,7 @@ function Header() {
         {
             name: "Home",
             slug: "/",
-            active: true
+            active:!authStatus
         },
         {
             name: "Login",
@@ -60,7 +61,7 @@ function Header() {
                                 <li key={item.name} className='ml-4'>
                                     <button
                                         onClick={() => navigate(item.slug)}
-                                        className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                                        className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full bg-gray-200 text-black'
                                     >
                                         {item.name}
                                     </button>
@@ -69,8 +70,16 @@ function Header() {
                             {authStatus && (
                                 <li className='ml-4'>
                                     <LogoutBtn />
-                                </li>
+                                </li> 
                             )}
+                            {authStatus && (
+                            <div className='w-20 ml-3'>
+                            <Link to="/">
+                                <Profile/>
+                            </Link>
+                        </div>
+                        )}
+
                         </ul>
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -96,6 +105,7 @@ function Header() {
                             <LogoutBtn />
                         </li>
                     )}
+                
                 </ul>
             </Container>
     </header>

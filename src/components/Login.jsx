@@ -4,12 +4,16 @@ import React, { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import Logo from "./Logo";
+import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+
 import { login as authLogin } from "../store/authSlice";
-import Loading from "./loading"; // Import the Loading component
+// import Loading from "./loading"; // Import the Loading component
 
 function Login() {
+  const [showPassword, setShowPassword] = useState(false);
+  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
@@ -68,14 +72,36 @@ function Login() {
                 required: true,
               })}
             />
+             <div className="relative">
             <Input
               label="Password : "
-              type="password"
-              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              placeholder="Enter password"
               {...register("password", { required: true })}
+              
             />
-            <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? <Loading /> : "Sign in"} {/* Use Loading component */}
+            {
+              // show hide password
+              showPassword ? (
+                <AiOutlineEyeInvisible
+                  className="text-gray-500 text-[23px] cursor-pointer absolute right-2 pl-1 top-[38px] text-center flex items-center "
+                  onClick={() => setShowPassword(false)}
+                />
+              ) : (
+                <AiFillEye
+                  className="text-gray-500 text-[23px] cursor-pointer absolute right-2 pl-1 top-[38px] text-center flex items-center"
+                  onClick={() => setShowPassword(true)}
+                />
+              )
+            }
+            </div>
+            <Button
+              type="submit"
+              className="w-full"
+              loading={loading}
+              disabled={loading}
+            >
+              {loading ? "Logging in..." : "LogIn"}
             </Button>
           </div>
         </form>
