@@ -10,6 +10,10 @@ import Profile from '../../components/profile'
 
 function Header() {
     const authStatus = useSelector((state) => state.auth.status)
+    console.log(authStatus)
+    // if(authStatus){
+    // const userId = useSelector((state) => state.auth.userData.$id)
+    // console.log(userId)}
     const navigate = useNavigate()
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -74,7 +78,7 @@ function Header() {
                             )}
                             {authStatus && (
                             <div className='w-20 ml-3'>
-                            <Link to="/">
+                            <Link to={`/dashboard`}>
                                 <Profile/>
                             </Link>
                         </div>
@@ -105,7 +109,6 @@ function Header() {
                             <LogoutBtn />
                         </li>
                     )}
-                
                 </ul>
             </Container>
     </header>

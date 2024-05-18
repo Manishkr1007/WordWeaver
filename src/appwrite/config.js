@@ -1,8 +1,6 @@
-
-
-
 import conf from "../conf/conf.js"
-import { Client,ID, Databases, Storage, Query } from "appwrite";
+import { Client, ID, Databases, Storage, Query, Account } from "appwrite";
+import axios from "axios";
 
 // const fileId = 658a8aa186a3b7bfed56;
 
@@ -12,15 +10,17 @@ export class Service {
     client = new Client();
     databases;
     bucket;
+    account;
 
-    constructor(){
+    constructor() {
         this.client.setEndpoint(conf.appwriteUrl)
         .setProject(conf.appwriteProjectId);
         this.databases = new Databases(this.client)
         this.bucket = new Storage(this.client)
+        this.account = new Account(this.client)
     }
 
-    async getPost(slug){
+    async getPost(slug) {
         try {
             return await this.databases.getDocument(conf.appwriteDatabaseId, conf.appwriteCollectionId, slug)
         } catch (error) {
@@ -29,7 +29,7 @@ export class Service {
         }
     }
 
-    async getPosts(queries = [Query.equal("status", "active")] ){
+    async getPosts(queries = [Query.equal("status", "active")]) {
         try {
             const data = await this.databases.listDocuments(conf.appwriteDatabaseId, conf.appwriteCollectionId, queries)
             console.log(data)
@@ -40,19 +40,19 @@ export class Service {
         }
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId}){
+    async createPost({ title, slug, content, featuredImage, status, userId }) {
         try {
             console.log(title, slug, content, featuredImage, status, userId);
             const res = await this.databases.createDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug, {
-                    title, 
-                    content, 
-                   featuredimage:  featuredImage, 
-                    status, 
-                  userid:   userId
-                }
+                title,
+                content,
+                featuredimage: featuredImage,
+                status,
+                userid: userId
+            }
             )
             console.log(res);
             return res;
@@ -61,7 +61,7 @@ export class Service {
         }
     }
 
-    async updatePost(slug, {title, content, featuredImage, status}){
+    async updatePost(slug, { title, content, featuredImage, status }) {
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -76,14 +76,14 @@ export class Service {
         }
     }
 
-    async deletePost(slug){
+    async deletePost(slug) {
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
-                )
-            return true;    
+            )
+            return true;
         } catch (error) {
             console.log("Appwrite service :: deleteDocument() :: ", error);
             return false
@@ -92,9 +92,9 @@ export class Service {
 
     // storage service
 
-    
 
-    async uploadFile(file){
+
+    async uploadFile(file) {
         try {
             return await this.bucket.createFile(
                 conf.appwriteBucketId,
@@ -107,26 +107,36 @@ export class Service {
         }
     }
 
-    async deleteFile(fileId){
+    async deleteFile(fileId) {
         try {
             return await this.bucket.deleteFile(
                 conf.appwriteBucketId,
                 fileId
-                
+
             )
         } catch (error) {
             console.log("Appwrite service :: deleteFile() :: ", error);
             return false
         }
     }
-  async getFilePreview(fileId){
-    console.log(fileId);
+    async getFilePreview(fileId) {
+        console.log(fileId);
         const data = await this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
         )
         console.log(data, "data");
         return data;
+    }
+
+    async fetchUserData(userId) {
+        try {
+          
+            return await this.databases.listDocuments(conf.appwriteDatabaseId, conf.appwriteCollectionId, [Query.equal("userid", userId)])
+        } catch (error) {
+            console.log("Appwrite service :: fetchUserData() :: ", error);
+            return false
+        }
     }
 }
 
