@@ -1,0 +1,1 @@
+export { default as loaded } from "./loaded.json";

@@ -78,7 +78,7 @@ function Header() {
                             )}
                             {authStatus && (
                             <div className='w-20 ml-3'>
-                            <Link to={`/dashboard`}>
+                            <Link to="/dashboard">
                                 <Profile/>
                             </Link>
                         </div>

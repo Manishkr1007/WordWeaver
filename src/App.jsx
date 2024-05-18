@@ -9,6 +9,7 @@ import Header from "./components/Header/Header"
 import Footer from "./components/footer/Footer"
 import authService from './appwrite/auth'
 import Logo from "./components/Logo"
+import Loader from './components/Loader'
 
 function App() {
   const [loading, setLoading] = useState(true);

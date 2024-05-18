@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-
+import Loader from '../components/Loader'
 function Protected({children, authentication = true}) {
 
   const authStatus = useSelector((state) => state.auth.status )
@@ -19,7 +19,9 @@ function Protected({children, authentication = true}) {
     setLoader(false)
   }, [authStatus, authentication, navigate])
 
-  return loader ? null : <>{children}</>
+  return loader ?  <div className="justify-center items-center flex">
+  <Loader />
+</div> : <>{children}</>
 }
 
 export default Protected
