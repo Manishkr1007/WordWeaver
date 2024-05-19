@@ -393,8 +393,8 @@
     direction: ltr;
 }
 .browser-css input::-webkit-clear-button {
-    /* -webkit-appearance: searchfield-cancel-button;
-    appearance: searchfield-cancel-button; */
+    -webkit-appearance: searchfield-cancel-button;
+    appearance: searchfield-cancel-button;
     display: inline-block;
     flex: none;
     -webkit-user-modify: read-only !important;
@@ -407,8 +407,8 @@
     pointer-events: auto;
 }
 .browser-css input[type="search" i]::-webkit-search-cancel-button {
-    /* -webkit-appearance: searchfield-cancel-button;
-    appearance: searchfield-cancel-button; */
+    -webkit-appearance: searchfield-cancel-button;
+    appearance: searchfield-cancel-button;
     display: block;
     flex: none;
     -webkit-user-modify: read-only !important;

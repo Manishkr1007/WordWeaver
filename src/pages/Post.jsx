@@ -50,10 +50,10 @@ function Post() {
       <Container>
         <div className='w-full flex justify-center mb-4 relative border rounded-xl p-2'>
           
-          <img src={imageUrl} alt={post.title} className='rounded-xl' />
+          <img src={imageUrl} alt={post.title} className='rounded-xl h-96   mr-16' />
           
           { isAuthor && (
-            <div className="absolute-right-6 top-6">
+            <div className="absolute-right-3  top-6">
               <Link to={`/edit-post/${post.$id}`}>
                 <Button bgColor="bg-green-500" className="mr-3">Edit</Button>
               </Link>

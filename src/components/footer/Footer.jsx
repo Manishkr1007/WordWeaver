@@ -22,7 +22,7 @@ function Footer() {
                     </div>
                     <div className="w-full p-6  md:w-1/2 lg:w-7/12 md:items-start">
                         <div className="flex flex-wrap  justify-between">
-                            <div className="w-full md:w-1/2 lg:w-1/4 mb-8 md:mb-0 ">
+                            {/* <div className="w-full md:w-1/2 lg:w-1/4 mb-8 md:mb-0 ">
                                 <h3 className="tracking-px mb-4 md:mb-9 text-xs text-center md:text-left font-semibold uppercase text-gray-500">
                                     Company
                                 </h3>
@@ -60,7 +60,7 @@ function Footer() {
                                     </Link>
                                 </li>
                                 </ul>
-                            </div>
+                            </div> */}
                             <div className="w-full p-6 md:p-0 md:w-1/2 lg:w-2/12">
                         <div className="w-full md:w-1/2 lg:w-1/4 mb-8 md:mb-0">
                             <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500  text-center md:text-left">
@@ -137,7 +137,7 @@ function Footer() {
                     </div>
 
                         </div>
-                    </div>
+                    </div>--
                 </div>
             </div>
         </section>
