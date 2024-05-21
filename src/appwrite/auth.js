@@ -16,6 +16,7 @@ export class AuthService {
     async createAccount({email, password, name}){
         try {
             const userAccount = await this.account.create(ID.unique(), email, password, name)
+           
             if (userAccount) {
                 return this.login({email, password})
             } else {
@@ -25,6 +26,8 @@ export class AuthService {
             throw error
         }
     }
+   
+
     async login({email, password}){
         try {
             return await this.account.createEmailSession(email, password)

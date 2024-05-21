@@ -14,9 +14,10 @@ function Header() {
     // if(authStatus){
     // const userId = useSelector((state) => state.auth.userData.$id)
     // console.log(userId)}
+
     const navigate = useNavigate()
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  
     const navItems = [
         {
             name: "Home",
@@ -114,5 +115,11 @@ function Header() {
     </header>
   )
 }
+
+// const mapStateToProps = (state) => ({
+//     authStatus: state.appwrite.auth
+// })
+// console.log(state);
+
 
 export default Header

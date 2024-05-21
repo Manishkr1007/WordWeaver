@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import appwriteservice from "../appwrite/config";
 import { useParams } from "react-router-dom";
 import { Account } from "appwrite";
+import { get } from "react-hook-form";
 
-// const account = new Account(appwriteservice.client);
 
-// const result = await account.get(userData.$id);
-// console.log(result);
+
 
 
 const UserDashboard = () => {
