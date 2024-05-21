@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom"
 import Logo from "../Logo"
+import contact from '../../pages/contact';
 
 function Footer() {
     return (
@@ -86,7 +87,7 @@ function Footer() {
                                 <li className="mb-4">
                                     <Link
                                         className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
+                                        to="/contact"
                                     >
                                         Contact Us
                                     </Link>

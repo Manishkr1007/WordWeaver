@@ -15,6 +15,7 @@ import AddPost from "./pages/AddPost.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import Post from "./pages/Post.jsx";
 import UserDashboard from "./pages/UserDashboard.jsx";
+import Contact from "./pages/contact.jsx";  
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,14 @@ const router = createBrowserRouter([
           <Protected authentication>
             <UserDashboard />
           </Protected>
+        ),
+      },
+      {
+        path: "/contact",
+        element: (
+   
+            <Contact />
+         
         ),
       },
     ],

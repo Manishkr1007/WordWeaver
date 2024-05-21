@@ -10,7 +10,7 @@ import Profile from '../../components/profile'
 
 function Header() {
     const authStatus = useSelector((state) => state.auth.status)
-    console.log(authStatus)
+    // console.log(authStatus)
     // if(authStatus){
     // const userId = useSelector((state) => state.auth.userData.$id)
     // console.log(userId)}
