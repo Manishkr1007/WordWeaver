@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom"
 import Logo from "../Logo"
-import contact from '../../pages/contact';
+
 
 function Footer() {
     return (
@@ -23,45 +23,7 @@ function Footer() {
                     </div>
                     <div className="w-full p-6  md:w-1/2 lg:w-7/12 md:items-start">
                         <div className="flex flex-wrap  justify-between">
-                            {/* <div className="w-full md:w-1/2 lg:w-1/4 mb-8 md:mb-0 ">
-                                <h3 className="tracking-px mb-4 md:mb-9 text-xs text-center md:text-left font-semibold uppercase text-gray-500">
-                                    Company
-                                </h3>
-                                <ul  className='flex flex-col items-center md:flex-none md:items-start' >
-                                    <li className="mb-2 md:mb-4 ">
-                                        <Link
-                                            className="text-base font-medium text-gray-900 hover:text-gray-700"
-                                            to="/"
-                                        >
-                                            Features
-                                        </Link>
-                                    </li>
-                                    <li className="mb-4  ">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Pricing
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Affiliate Program
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Press Kit
-                                    </Link>
-                                </li>
-                                </ul>
-                            </div> */}
+                           
                             <div className="w-full p-6 md:p-0 md:w-1/2 lg:w-2/12">
                         <div className="w-full md:w-1/2 lg:w-1/4 mb-8 md:mb-0">
                             <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-gray-500  text-center md:text-left">
@@ -92,14 +54,7 @@ function Footer() {
                                         Contact Us
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Customer Support
-                                    </Link>
-                                </li>
+                               
                             </ul>
                         </div>
                     </div>
@@ -125,14 +80,7 @@ function Footer() {
                                         Privacy Policy
                                     </Link>
                                 </li>
-                                <li>
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Licensing
-                                    </Link>
-                                </li>
+                           
                             </ul>
                         </div>
                     </div>
