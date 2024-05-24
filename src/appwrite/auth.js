@@ -4,7 +4,7 @@ import { Client, Account, ID } from "appwrite";
   import cors from "cors";
 
   const cors = require('cors');
-  App.use(cors());  
+  app.use(cors());  
 
 
 
