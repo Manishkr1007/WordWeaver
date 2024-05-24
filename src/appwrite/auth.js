@@ -3,8 +3,8 @@ import conf from "../conf/conf.js"
 import { Client, Account, ID } from "appwrite";
   import cors from "cors";
 
-  const cors = require('cors');
-  app.use(cors());  
+  const Cors = require('cors');
+  app.use(Cors());  
 
 
 
