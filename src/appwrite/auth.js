@@ -1,11 +1,7 @@
 // start with appwrite auth service
 import conf from "../conf/conf.js"
 import { Client, Account, ID } from "appwrite";
-  import cors from "cors";
-
   
-  app.use(cors());  
-
 
 
 export class AuthService {

@@ -54,7 +54,7 @@ export class Service {
                 userid: userId
             }
             )
-            console.log(res);
+            // console.log(res);
             return res;
         } catch (error) {
             console.log("Appwrite service :: createPost() :: ", error);
@@ -120,12 +120,12 @@ export class Service {
         }
     }
     async getFilePreview(fileId) {
-        console.log(fileId);
+        // console.log(fileId);
         const data = await this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
         )
-        console.log(data, "data");
+        // console.log(data, "data");
         return data;
     }
 
