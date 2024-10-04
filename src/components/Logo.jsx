@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types'; // Import PropTypes for type checking
-import logo from "/img/Featherpenlogo.png"; // Updated path
+
+// Use dynamic import for the logo
+const logoPath = '/img/Featherpenlogo.png'; // Updated path
 
 function Logo({ width = "100%", className = "" }) {
   return (
     <img 
-      src={logo} 
+      src={logoPath}
       style={{ width }} 
-      className={`rounded-full ${className}`} // Allow additional classes
+      className={`rounded-full ${className}`.trim()} // Allow additional classes
       alt='WordWeaver Logo' // More descriptive alt text
     />
   ); 

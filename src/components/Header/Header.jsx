@@ -1,24 +1,18 @@
-import React ,{useState}from 'react'
-import Container from "../container/Container"
-import {Link} from "react-router-dom"
-import LogoutBtn from './LogoutBtn'
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react';
+import Container from "../container/Container";
+import { Link } from "react-router-dom";
+import LogoutBtn from './LogoutBtn';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import Logo from '../Logo'; // Ensure this path is correct
-import {FiMenu,FiX} from "react-icons/fi";
-import Profile from '../../components/profile'
-
+import { FiMenu, FiX } from "react-icons/fi";
+import Profile from '../../components/profile';
 
 function Header() {
-    const authStatus = useSelector((state) => state.auth.status)
-    // console.log(authStatus)
-    // if(authStatus){
-    // const userId = useSelector((state) => state.auth.userData.$id)
-    // console.log(userId)}
-
-    const navigate = useNavigate()
+    const authStatus = useSelector((state) => state.auth.status);
+    const navigate = useNavigate();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+
     const navItems = [
         {
             name: (
@@ -55,11 +49,11 @@ function Header() {
             slug: "/add-post",
             active: authStatus
         }
-    ]
+    ];
 
-  return (
-    <header className='py-3 shadow bg-gray-500'>
-         <Container>
+    return (
+        <header className='py-3 shadow bg-gray-500'>
+            <Container>
                 <nav className='flex justify-between items-center'>
                     <div className='flex items-center'>
                         <div className='w-20'>
@@ -86,16 +80,15 @@ function Header() {
                             {authStatus && (
                                 <li className='ml-4'>
                                     <LogoutBtn />
-                                </li> 
+                                </li>
                             )}
                             {authStatus && (
-                            <div className='w-20 ml-3'>
-                            <Link to="/dashboard">
-                                <Profile/>
-                            </Link>
-                        </div>
-                        )}
-
+                                <div className='w-20 ml-3'>
+                                    <Link to="/dashboard">
+                                        <Profile />
+                                    </Link>
+                                </div>
+                            )}
                         </ul>
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -123,14 +116,8 @@ function Header() {
                     )}
                 </ul>
             </Container>
-    </header>
-  )
+        </header>
+    );
 }
 
-// const mapStateToProps = (state) => ({
-//     authStatus: state.appwrite.auth
-// })
-// console.log(state);
-
-
-export default Header
+export default Header;
