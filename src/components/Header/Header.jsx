@@ -4,9 +4,10 @@ import {Link} from "react-router-dom"
 import LogoutBtn from './LogoutBtn'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
-import Logo from '../Logo'
+import Logo from '../Logo'; // Ensure this path is correct
 import {FiMenu,FiX} from "react-icons/fi";
 import Profile from '../../components/profile'
+
 
 function Header() {
     const authStatus = useSelector((state) => state.auth.status)
@@ -20,9 +21,19 @@ function Header() {
   
     const navItems = [
         {
-            name: "Home",
+            name: (
+                <div className="flex items-center">
+                    <Logo className="w-6 h-6 mr-2" /> {/* Use Logo component */}
+                    WordWeaver
+                </div>
+            ),
             slug: "/",
-            active:!authStatus
+            active: !authStatus
+        },
+        {
+            name: "WordWeaver", // New button added
+            slug: "/wordweaver", // Define the slug for the new button
+            active: true // Set active to true to always show this button
         },
         {
             name: "Login",
