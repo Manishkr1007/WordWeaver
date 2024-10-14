@@ -1021,6 +1021,93 @@
     left: 0;
     background: rgba(0, 0, 0, 0.1);
 }
+
+/* Contact Container */
+.contact-container {
+    width: 100%;
+    max-width: 600px;
+    padding: 2rem;
+    margin: 0 auto;
+  }
+
+  .text-black{
+    color: rgb(31 41 55 / var(--tw-text-opacity));
+  }
+  
+  /* Input Fields */
+  .input-field {
+    padding: 0.75rem;
+    border: 2px solid #d1d5db; /* Light gray border */
+    border-radius: 0.375rem; /* Rounded edges */
+    background-color: #f9fafb; /* Slight off-white background */
+    transition: border-color 0.3s ease-in-out;
+    outline: none;
+    font-size: 1rem;
+    color: #374151; /* Dark gray text */
+    width: 100%; /* Ensure the input fields are 100% width */
+  }
+  
+  .input-field:focus {
+    border-color: #7f8a9c; /* Blue border on focus */
+  }
+  
+  /* Submit Button */
+  .submit-btn {
+    width: 100%;
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background-color: rgb(107 114 128 / var(--tw-bg-opacity)); /* Blue background */
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+  
+  .submit-btn:hover {
+    background-color: rgb(75 85 99 / var(--tw-bg-opacity));
+    transform: scale(1.02);
+  }
+  
+  /* Form Group */
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align labels to the left */
+    margin-bottom: 1.5rem; /* Add space between input groups */
+  }
+  
+  /* Label */
+  label {
+    margin-bottom: 0.25rem; /* Reduce margin between label and input */
+  }
+  
+  /* Divider Line */
+  .divider {
+    border: none;
+    height: 1px;
+    background-color: #d1d5db; /* Light gray divider */
+  }
+  
+  /* Social Icons */
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contact-container {
+      padding: 1rem;
+    }
+  }
+  
+  
+  
 @page {
     /* FIXME: Define the right default values for page properties. */
     size: auto;
