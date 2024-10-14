@@ -1,96 +1,117 @@
-import React from 'react'
-import {Link} from "react-router-dom"
-import Logo from "../Logo"
-
+import React from 'react';
+import { Link } from "react-router-dom";
+import { FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import Logo from "../Logo";
 
 function Footer() {
     return (
-        <section className="relative overflow-hidden py-10 bg-slate-900">
-            <div className="relative z-10 mx-auto max-w-7xl px-4 flex justify-center items-center">
-                <div className="-m-6 flex flex-wrap">
-                    <div className="w-full p-6 md:w-1/2 lg:w-5/12 mb-8 md:mb-0 md:pr-6">
-                        <div className="flex h-full flex-col justify-center items-center md:justify-between">
-                            <div className="mb-4 inline-flex items-center">
-                                <Logo width="100px" />
-                            </div>
-                            <h1 className='mb-10 text-1xl font-bold text-white'>WordWeaver</h1>
-                            <div>
-                                <p className="text-sm md:text-center text-white">
-                                    &copy; Copyright 2024. All Rights Reserved by WordWeaver.
-                                </p>
-                            </div>
+        <section className="relative overflow-hidden py-12 bg-slate-900">
+            <div className="relative mx-auto max-w-7xl px-6">
+                <div className="flex flex-col md:flex-row justify-between mb-12">
+                    <div className="flex flex-col items-center md:items-start w-full md:w-1/3 mb-8 md:mb-0">
+                        <Logo width="100px" className="mb-6" />
+                        <h1 className="text-2xl font-bold text-white mb-4">WordWeaver</h1>
+                        <p className="text-sm text-gray-400 text-center md:text-left">
+                            Sharing Stories with the World
+                        </p>
+                    </div>
+                    <div className="w-full md:w-1/3 mb-8 md:mb-0 text-center md:text-left">
+                        <h3 className="text-xl font-semibold text-white mb-4">Subscribe to our Newsletter</h3>
+                        <p className="text-gray-400 mb-4">Stay updated with the latest news and articles from WordWeaver.</p>
+                        <form className="flex flex-col md:flex-row items-center justify-center md:justify-start">
+                            <input
+                                type="email"
+                                placeholder="Enter your email"
+                                className="px-4 py-2 w-full md:w-auto text-gray-900 rounded-md mb-4 md:mb-0 md:mr-4"
+                            />
+                            <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-500">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                    <div className="w-full md:w-1/3 flex flex-col items-center md:items-start">
+                        <h3 className="text-xl font-semibold text-white mb-4">Follow Us</h3>
+                        <div className="flex space-x-4">
+                            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+                                <FaTwitter className="text-white text-2xl hover:text-gray-400" />
+                            </a>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                                <FaLinkedin className="text-white text-2xl hover:text-gray-400" />
+                            </a>
+                            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                                <FaInstagram className="text-white text-2xl hover:text-gray-400" />
+                            </a>
                         </div>
                     </div>
-                    <div className="w-full p-6  md:w-1/2 lg:w-7/12 md:items-start">
-                        <div className="flex flex-wrap  justify-between">
-                           
-                            <div className="w-full p-6 md:p-0 md:w-1/2 lg:w-2/12">
-                        <div className="w-full md:w-1/2 lg:w-1/4 mb-8 md:mb-0">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-white  text-center md:text-left">
-                                Support
-                            </h3>
-                            <ul className='flex flex-col items-center md:flex-none md:items-start'>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-gray-900 hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Account
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-white hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Help
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-white hover:text-gray-700"
-                                        to="/contact"
-                                    >
-                                        Contact Us
-                                    </Link>
-                                </li>
-                               
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="w-full md:p-0 p-6 md:w-1/2 lg:w-3/12">
-                        <div className="h-full">
-                            <h3 className="tracking-px mb-9  text-xs font-semibold uppercase text-white text-center md:text-left">
-                                Legals
-                            </h3>
-                            <ul className='flex flex-col  items-center md:flex-none md:items-start'>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-white hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Terms &amp; Conditions
-                                    </Link>
-                                </li>
-                                <li className="mb-4">
-                                    <Link
-                                        className=" text-base font-medium text-white hover:text-gray-700"
-                                        to="/"
-                                    >
-                                        Privacy Policy
-                                    </Link>
-                                </li>
-                           
-                            </ul>
-                        </div>
+                </div>
+                <div className="flex flex-col md:flex-row justify-between mb-12">
+                    <div className="w-full md:w-1/4 mb-8 md:mb-0">
+                        <h3 className="text-lg font-semibold text-white mb-6">Support</h3>
+                        <ul className="space-y-4">
+                            <li>
+                                <Link className="text-base font-medium text-gray-400 hover:text-white" to="/">
+                                    Account
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className="text-base font-medium text-gray-400 hover:text-white" to="/">
+                                    Help
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className="text-base font-medium text-gray-400 hover:text-white" to="/contact">
+                                    Contact Us
+                                </Link>
+                            </li>
+                        </ul>
                     </div>
 
-                        </div>
-                    </div>--
+                    {/* Quick Links Section */}
+                    <div className="w-full md:w-1/4 mb-8 md:mb-0">
+                        <h3 className="text-lg font-semibold text-white mb-6">Quick Links</h3>
+                        <ul className="space-y-4">
+                            <li>
+                                <Link className="text-base font-medium text-gray-400 hover:text-white" to="/">
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className="text-base font-medium text-gray-400 hover:text-white" to="/">
+                                    Blog
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className="text-base font-medium text-gray-400 hover:text-white" to="/about">
+                                    About Us
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Legal Section */}
+                    <div className="w-full md:w-1/4">
+                        <h3 className="text-lg font-semibold text-white mb-6">Legals</h3>
+                        <ul className="space-y-4">
+                            <li>
+                                <Link className="text-base font-medium text-gray-400 hover:text-white" to="/">
+                                    Terms &amp; Conditions
+                                </Link>
+                            </li>
+                            <li>
+                                <Link className="text-base font-medium text-gray-400 hover:text-white" to="/">
+                                    Privacy Policy
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="text-center">
+                    <p className="text-sm text-gray-400">
+                        &copy; 2024 WordWeaver. All Rights Reserved.
+                    </p>
                 </div>
             </div>
         </section>
     );
 }
-
 export default Footer;
