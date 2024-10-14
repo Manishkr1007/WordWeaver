@@ -52,7 +52,7 @@ function Header() {
     ];
 
     return (
-        <header className='py-3 shadow bg-gray-500'>
+        <header className='py-3 shadow bg-black'>
             <Container>
                 <nav className='flex justify-between items-center'>
                     <div className='flex items-center'>
@@ -62,7 +62,7 @@ function Header() {
                             </Link>
                         </div>
                         <div className='ml-2'>
-                            <h1 className='text-2xl md:text-4xl font-bold text-gray-800'>WordWeaver</h1>
+                            <h1 className='text-2xl md:text-4xl font-bold text-white'>WordWeaver</h1>
                         </div>
                     </div>
                     <div className='flex items-center'>
@@ -71,7 +71,7 @@ function Header() {
                                 <li key={item.name} className='ml-4'>
                                     <button
                                         onClick={() => navigate(item.slug)}
-                                        className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full bg-gray-200 text-black'
+                                        className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full bg-white text-black'
                                     >
                                         {item.name}
                                     </button>
@@ -92,7 +92,7 @@ function Header() {
                         </ul>
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className='md:hidden ml-4 text-gray-800 focus:outline-none'
+                            className='md:hidden ml-4 text-white focus:outline-none'
                         >
                             {isMobileMenuOpen ? <FiX className='w-6 h-6' /> : <FiMenu className='w-6 h-6' />}
                         </button>
@@ -103,7 +103,7 @@ function Header() {
                         <li key={item.name} className='my-2'>
                             <button
                                 onClick={() => navigate(item.slug)}
-                                className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full'
+                                className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full text-white'
                             >
                                 {item.name}
                             </button>
