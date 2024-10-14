@@ -26,7 +26,7 @@ function Home() {
       <Container>
         <div className="flex flex-wrap">
         <div className="flex flex-wrap justify-center">
-      <div className="w-full md:w-1/2 lg:w-1/3 p-4">
+      <div className="w-full md:w-1/2 lg:w-1/3 p-4 transition-all hover:scale-105">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <img className="w-full h-40 object-cover object-center" src={car} alt="Post 1" />
           <div className="p-6">
@@ -36,7 +36,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="w-full md:w-1/2 lg:w-1/3 p-4">
+      <div className="w-full md:w-1/2 lg:w-1/3 p-4 transition-all hover:scale-105">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <img className="w-full h-40 object-cover object-center" src={dog} alt="Post 2" />
           <div className="p-6">
@@ -46,7 +46,7 @@ function Home() {
         </div>
       </div>
 
-      <div className="w-full md:w-1/2 lg:w-1/3 p-4">
+      <div className="w-full md:w-1/2 lg:w-1/3 p-4 transition-all hover:scale-105">
         <div className="bg-white rounded-lg shadow-lg overflow-hidden">
           <img className="w-full h-40 object-cover object-center" src={mountain} alt="Post 3" />
           <div className="p-6">
