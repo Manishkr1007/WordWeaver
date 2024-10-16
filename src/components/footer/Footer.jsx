@@ -4,6 +4,8 @@ import { FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
 import Logo from "../Logo";
 
 function Footer() {
+    // Get the current year dynamically
+    const currentYear = new Date().getFullYear();
     return (
         <section className="relative overflow-hidden py-12 bg-slate-900">
             <div className="relative mx-auto max-w-7xl px-6">
@@ -107,7 +109,7 @@ function Footer() {
                 </div>
                 <div className="text-center">
                     <p className="text-sm text-gray-400">
-                        &copy; 2024 WordWeaver. All Rights Reserved.
+                    &copy; <span>{currentYear}</span> WordWeaver. All Rights Reserved.
                     </p>
                 </div>
             </div>
