@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import { login as authLogin } from "../store/authSlice";
-// import Loading from "./loading"; // Import the Loading component
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,20 +23,21 @@ function Login() {
     setError("");
     setLoading(true);
     try {
-      const session = await authService.login(data);
-      if (session) {
-        const userData = await authService.getCurrentUser();
-        if (userData) {
-          dispatch(authLogin({ userData }));
-          setLoading(false);
-          navigate("/");
+        const session = await authService.login(data);
+        if (session) {
+            const userData = await authService.getCurrentUser(); 
+            if (userData) {
+                dispatch(authLogin({ userData }));
+                navigate("/");
+            }
         }
-      }
     } catch (error) {
-      setError(error.message);
-      setLoading(false);
+        setError(error.message); 
+    } finally {
+        setLoading(false); 
     }
-  };
+};
+
 
   return (
     <div className="flex items-center justify-center w-full">
