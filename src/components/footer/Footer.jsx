@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaTwitter, FaLinkedin, FaInstagram, FaFacebookF } from 'react-icons/fa';
 import Logo from "../Logo";
 
 function Footer() {
@@ -42,6 +42,9 @@ function Footer() {
                             </a>
                             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                                 <FaInstagram className="text-white text-2xl hover:text-gray-400" />
+                            </a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                                <FaFacebookF className="text-white text-2xl hover:text-gray-400" />
                             </a>
                         </div>
                     </div>
