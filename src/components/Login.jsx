@@ -7,6 +7,8 @@ import Logo from "./Logo";
 import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import GoogleSignIn from '../utils/GoogleSignIn';
+
 
 import { login as authLogin } from "../store/authSlice";
 // import Loading from "./loading"; // Import the Loading component
@@ -103,6 +105,8 @@ function Login() {
             >
               {loading ? "Logging in..." : "LogIn"}
             </Button>
+          <GoogleSignIn />
+
           </div>
         </form>
       </div>

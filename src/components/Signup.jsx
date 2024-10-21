@@ -5,6 +5,7 @@ import Button from "./Button";
 import Input from "./Input";
 import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
+import GoogleSignIn from '../utils/GoogleSignIn';
 
 import Logo from "./Logo";
 import { useForm } from "react-hook-form";
@@ -112,6 +113,9 @@ function Signup() {
             >
               {loading ? "Logging in..." : "Sign Up"}
             </Button>
+
+          <GoogleSignIn />
+
           </div>
         </form>
       </div>

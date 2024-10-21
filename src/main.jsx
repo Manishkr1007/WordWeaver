@@ -16,6 +16,8 @@ import EditPost from "./pages/EditPost.jsx";
 import Post from "./pages/Post.jsx";
 import UserDashboard from "./pages/UserDashboard.jsx";
 import Contact from "./pages/contact.jsx";  
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 
 const router = createBrowserRouter([
   {
@@ -94,10 +96,15 @@ const router = createBrowserRouter([
   },
 ]);
 
+const clientId = import.meta.env.VITE_API_GOOGLE_CLIENT_ID;
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <GoogleOAuthProvider clientId={clientId}>
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
+    </GoogleOAuthProvider>
+
   </React.StrictMode>
 );
