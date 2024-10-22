@@ -7,6 +7,7 @@ import PostCard from "../components/PostCard"
 import car from "../assets/img/car.jpg"
 import dog from '../assets/img/dog.jpg'
 import mountain from '../assets/img/mountain.jpg'
+import ChatBotEmbed from "../components/chatbot.jsx";
 
 function Home() {
 
@@ -60,6 +61,8 @@ function Home() {
     </div>
         </div>
       </Container>
+      <ChatBotEmbed/>
+
     </div>
     )
   }
