@@ -1,19 +1,18 @@
-import authService from "../appwrite/auth";
+import { provider, auth, signInWithPopup } from "./firebase"; 
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import Logo from "./Logo";
 import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 import { login as authLogin } from "../store/authSlice";
-// import Loading from "./loading"; // Import the Loading component
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm();
@@ -39,10 +38,24 @@ function Login() {
     }
   };
 
+  // Google Sign-in
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      if (user) {
+        dispatch(authLogin({ userData: user }));
+        navigate("/");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center w-full">
       <div
-        className={`m-auto  sm:w-full max-w-lg bg-gray-100 rounded-xl p-1 sm:p-10 border border-black/10`}
+        className={`m-auto sm:w-full max-w-lg bg-gray-100 rounded-xl p-1 sm:p-10 border border-black/10`}
       >
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
@@ -68,23 +81,18 @@ function Login() {
               label="Email : "
               placeholder="Email Address"
               type="email"
-              {...register("email", {
-                required: true,
-              })}
+              {...register("email", { required: true })}
             />
-             <div className="relative">
-            <Input
-              label="Password : "
-              type={showPassword ? "text" : "password"}
-              placeholder="Enter password"
-              {...register("password", { required: true })}
-              
-            />
-            {
-              // show hide password
-              showPassword ? (
+            <div className="relative">
+              <Input
+                label="Password : "
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter password"
+                {...register("password", { required: true })}
+              />
+              {showPassword ? (
                 <AiOutlineEyeInvisible
-                  className="text-gray-500 text-[23px] cursor-pointer absolute right-2 pl-1 top-[38px] text-center flex items-center "
+                  className="text-gray-500 text-[23px] cursor-pointer absolute right-2 pl-1 top-[38px] text-center flex items-center"
                   onClick={() => setShowPassword(false)}
                 />
               ) : (
@@ -92,8 +100,7 @@ function Login() {
                   className="text-gray-500 text-[23px] cursor-pointer absolute right-2 pl-1 top-[38px] text-center flex items-center"
                   onClick={() => setShowPassword(true)}
                 />
-              )
-            }
+              )}
             </div>
             <Button
               type="submit"
@@ -105,6 +112,18 @@ function Login() {
             </Button>
           </div>
         </form>
+
+        {/* Google Sign-In Button */}
+        <div className="flex justify-center mt-5">
+          <Button
+            type="button"
+            className="flex items-center w-full justify-center space-x-2 border border-gray-300 p-3 rounded-md hover:bg-gray-200 transition-all"
+            onClick={handleGoogleSignIn}
+          >
+            <FcGoogle className="text-xl" />
+            <span>Sign In with Google</span>
+          </Button>
+        </div>
       </div>
     </div>
   );
