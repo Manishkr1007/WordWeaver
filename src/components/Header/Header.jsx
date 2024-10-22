@@ -38,6 +38,11 @@ function Header() {
             active: !authStatus
         },
         {
+            name: "Profile",
+            slug: "/profile",
+            active: !authStatus
+        },
+        {
             name: "All Posts",
             slug: "/all-posts",
             active: authStatus
@@ -64,14 +69,14 @@ function Header() {
                             <h1 className='text-2xl md:text-4xl font-bold text-white'>WordWeaver</h1>
                         </div>
                     </div>
-                    
+
                     {/* Desktop Navigation */}
                     <div className='flex items-center'>
                         <ul className='hidden md:flex md:items-center'>
                             {navItems.map((item) => item.active && (
                                 <li key={item.slug} className='ml-4'>
-                                    <Link 
-                                        to={item.slug} 
+                                    <Link
+                                        to={item.slug}
                                         className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full bg-white text-black'
                                     >
                                         {item.name}
@@ -91,7 +96,7 @@ function Header() {
                                 </>
                             )}
                         </ul>
-                        
+
                         {/* Mobile Menu Toggle Button */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -103,13 +108,13 @@ function Header() {
                         </button>
                     </div>
                 </nav>
-                
+
                 {/* Mobile Navigation Menu */}
                 <ul className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
                     {navItems.map((item) => item.active && (
                         <li key={item.slug} className='my-2'>
-                            <Link 
-                                to={item.slug} 
+                            <Link
+                                to={item.slug}
                                 className='inline-block px-6 py-2 duration-200 hover:bg-blue-100 rounded-full text-white'
                                 onClick={() => setIsMobileMenuOpen(false)} // Close menu on link click
                             >
