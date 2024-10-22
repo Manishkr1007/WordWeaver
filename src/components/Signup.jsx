@@ -1,10 +1,10 @@
-import authService from "../appwrite/auth";
+import { provider, auth, signInWithPopup } from "./firebase"; 
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
+import { FcGoogle } from "react-icons/fc"; 
 
 import Logo from "./Logo";
 import { useForm } from "react-hook-form";
@@ -14,7 +14,6 @@ import { login } from "../store/authSlice";
 function Signup() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const dispatch = useDispatch();
@@ -23,7 +22,6 @@ function Signup() {
   const create = async (data) => {
     setError("");
     try {
-      console.log(data);
       const userData = await authService.createAccount(data);
       if (userData) {
         const userData = await authService.getCurrentUser();
@@ -35,18 +33,30 @@ function Signup() {
     }
   };
 
+  // Google Sign-in
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      if (user) {
+        dispatch(login({ userData: user }));
+        navigate("/");
+      }
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-      >
+      <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10">
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
             <Logo width="100%" />
           </span>
         </div>
         <h2 className="text-center text-2xl font-bold leading-tight">
-          Sign up to create account
+          Sign up to create an account
         </h2>
         <p className="mt-2 text-center text-base text-black/60">
           Already have an account?&nbsp;
@@ -60,7 +70,6 @@ function Signup() {
         {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
         <form onSubmit={handleSubmit(create)} className="mt-8">
           <div className="space-y-5">
-
             <Input
               {...register("name", { required: true })}
               label="Full Name : "
@@ -80,18 +89,15 @@ function Signup() {
               placeholder="Email Address"
               type="email"
             />
-              <div className="relative">
-            <Input
-              {...register("password", { required: true })}
-              label="Password : "
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-             
-              className="w-full"
-            />
-            {
-              // show hide password
-              showPassword ? (
+            <div className="relative">
+              <Input
+                {...register("password", { required: true })}
+                label="Password : "
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                className="w-full"
+              />
+              {showPassword ? (
                 <AiOutlineEyeInvisible
                   className="text-gray-500 text-[23px] cursor-pointer absolute right-2 pl-1 top-[38px] text-center flex items-center"
                   onClick={() => setShowPassword(false)}
@@ -101,8 +107,7 @@ function Signup() {
                   className="text-gray-500 text-[23px] cursor-pointer absolute right-2 pl-1 top-[38px] text-center flex items-center"
                   onClick={() => setShowPassword(true)}
                 />
-              )
-            }
+              )}
             </div>
             <Button
               type="submit"
@@ -110,10 +115,22 @@ function Signup() {
               loading={loading}
               disabled={loading}
             >
-              {loading ? "Logging in..." : "Sign Up"}
+              {loading ? "Signing up..." : "Sign Up"}
             </Button>
           </div>
         </form>
+
+        {/* Google Sign-In Button */}
+        <div className="flex justify-center mt-5">
+          <Button
+            type="button"
+            className="flex items-center w-full justify-center space-x-2 border border-gray-300 p-3 rounded-md hover:bg-gray-200 transition-all"
+            onClick={handleGoogleSignIn}
+          >
+            <FcGoogle className="text-xl" />
+            <span>Sign Up with Google</span>
+          </Button>
+        </div>
       </div>
     </div>
   );
