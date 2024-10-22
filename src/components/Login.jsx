@@ -8,6 +8,8 @@ import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import GoogleSignIn from '../utils/GoogleSignIn';
+
 
 import { login as authLogin } from "../store/authSlice";
 
@@ -110,6 +112,8 @@ function Login() {
             >
               {loading ? "Logging in..." : "LogIn"}
             </Button>
+          <GoogleSignIn />
+
           </div>
         </form>
 
