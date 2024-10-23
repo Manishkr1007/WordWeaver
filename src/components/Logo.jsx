@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'; // Import PropTypes for type checking
 
 // Use dynamic import for the logo
-const logoPath = 'img/Featherpenlogo.png'; // Updated path
+const logoPath = '/img/Featherpenlogo.png'; // Updated path
 
 function Logo({ width = "100%", className = "" }) {
   return (
