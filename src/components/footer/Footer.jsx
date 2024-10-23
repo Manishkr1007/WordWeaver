@@ -1,11 +1,9 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import { FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaTwitter, FaLinkedin, FaInstagram, FaFacebookF } from 'react-icons/fa';
 import Logo from "../Logo";
 
 function Footer() {
-    // Get the current year dynamically
-    const currentYear = new Date().getFullYear();
     return (
         <section className="relative overflow-hidden py-12 bg-slate-900">
             <div className="relative mx-auto max-w-7xl px-6">
@@ -42,6 +40,9 @@ function Footer() {
                             </a>
                             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
                                 <FaInstagram className="text-white text-2xl hover:text-gray-400" />
+                            </a>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+                                <FaFacebookF className="text-white text-2xl hover:text-gray-400" />
                             </a>
                         </div>
                     </div>
@@ -109,7 +110,7 @@ function Footer() {
                 </div>
                 <div className="text-center">
                     <p className="text-sm text-gray-400">
-                    &copy; <span>{currentYear}</span> WordWeaver. All Rights Reserved.
+                        &copy; 2024 WordWeaver. All Rights Reserved.
                     </p>
                 </div>
             </div>
