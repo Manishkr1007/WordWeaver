@@ -18,6 +18,7 @@ import UserDashboard from "./pages/UserDashboard.jsx";
 import Contact from "./pages/contact.jsx";
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import BloggersProfile from "./components/BloggersProfile.jsx";
+import Not_Found from "./pages/Not_Found.jsx";
 
 
 const router = createBrowserRouter([
@@ -98,6 +99,14 @@ const router = createBrowserRouter([
         element: (
 
           <Contact />
+
+        ),
+      },
+      {
+        path: "/not_found",
+        element: (
+
+          <Not_Found/>
 
         ),
       },
