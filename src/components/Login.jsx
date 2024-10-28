@@ -1,6 +1,6 @@
-import { provider, auth, signInWithPopup } from "./firebase"; 
+import { provider, auth, signInWithPopup } from "./firebase";
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import Logo from "./Logo";
@@ -8,16 +8,16 @@ import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import GoogleSignIn from '../utils/GoogleSignIn';
-
-
+import GoogleSignIn from "../utils/GoogleSignIn";
+import authService from "../appwrite/auth";
 import { login as authLogin } from "../store/authSlice";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [showModal, setShowModal] = useState(false); 
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, watch } = useForm();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -51,6 +51,21 @@ function Login() {
       }
     } catch (error) {
       setError(error.message);
+    }
+  };
+
+  // Handle forgot password
+  const handleForgotPassword = async (email) => {
+    console.log("Attempting to send password reset email to:", email);
+    try {
+      await authService.resetPassword(email);
+      setError("Check your email for a reset link.");
+      setShowModal(false); 
+    } catch (error) {
+      console.error("Error sending password reset email:", error);
+      setError(
+        "Failed to send password reset email. Please check the email address."
+      );
     }
   };
 
@@ -110,10 +125,18 @@ function Login() {
               loading={loading}
               disabled={loading}
             >
-              {loading ? "Logging in..." : "LogIn"}
+              {loading ? "Logging in..." : "Log In"}
             </Button>
-          <GoogleSignIn />
-
+            <div className="flex justify-between mt-3">
+              <button
+                type="button"
+                onClick={() => setShowModal(true)} 
+                className="text-primary hover:underline"
+              >
+                Forgot Password?
+              </button>
+            </div>
+            <GoogleSignIn />
           </div>
         </form>
 
@@ -129,6 +152,40 @@ function Login() {
           </Button>
         </div>
       </div>
+
+      {/* Forgot Password Modal */}
+      {showModal && (
+        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+          <div className="bg-white p-5 rounded shadow-lg">
+            <h3 className="text-lg font-bold">Reset Password</h3>
+            <p className="mt-2">Enter your email to receive a reset link.</p>
+            <Input
+              label="Email : "
+              placeholder="Email Address"
+              type="email"
+              {...register("resetEmail", { required: true })}
+            />
+            <div className="mt-4 flex justify-end">
+              <Button
+                type="button"
+                onClick={() => setShowModal(false)} 
+                className="mr-2 border border-gray-300 rounded-md p-2"
+              >
+                Cancel
+              </Button>
+              <Button
+                type="button"
+                onClick={() => {
+                  handleForgotPassword(watch("resetEmail")); 
+                }}
+                className="text-white bg-primary rounded-md p-2"
+              >
+                Send Reset Link
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

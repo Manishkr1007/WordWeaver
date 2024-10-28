@@ -16,9 +16,9 @@ import EditPost from "./pages/EditPost.jsx";
 import Post from "./pages/Post.jsx";
 import UserDashboard from "./pages/UserDashboard.jsx";
 import Contact from "./pages/contact.jsx";
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import BloggersProfile from "./components/BloggersProfile.jsx";
-
+import ResetPassword from "./components/ResetPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/reset-password",
+        element: <ResetPassword />,
       },
       {
         path: "/login",
@@ -95,11 +99,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/contact",
-        element: (
-
-          <Contact />
-
-        ),
+        element: <Contact />,
       },
     ],
   },
@@ -114,6 +114,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <RouterProvider router={router} />
       </Provider>
     </GoogleOAuthProvider>
-
   </React.StrictMode>
 );
