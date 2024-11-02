@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const BloggersProfile = () => {
     const [drafts, setDrafts] = useState([]);
