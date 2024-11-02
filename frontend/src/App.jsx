@@ -6,17 +6,12 @@ import { useDispatch } from "react-redux";
 import { login, logout } from "./store/authSlice";
 import Header from "./components/Header/Header"
 import Footer from "./components/footer/Footer"
-import authService from './appwrite/auth'
-import Logo from "./components/Logo"
-import Loader from './components/Loader'
 
-import { useSelector } from 'react-redux';
 
 
 function App() {
       const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
-    const userData = useSelector((state) => state.auth.userData);
 
     useEffect(() => {
         // Check if user data exists in localStorage

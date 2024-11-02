@@ -1,4 +1,3 @@
-import React from 'react'
 import appwriteService from "../appwrite/config"
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -32,8 +31,8 @@ function Home() {
           <img className="w-full h-40 object-cover object-center" src={car} alt="Post 1" />
           <div className="p-6">
             <h2 className="text-lg font-semibold text-gray-800 mb-2">Automotive</h2>
-            <p className="text-gray-600">In this blog, we delve into the world of automotive passion, exploring the thrill of speed, the elegance of design, and the stories behind every engine's roar. Join us on a journey of car love.</p>
-          </div>
+            <p className="text-gray-600">In this blog, we delve into the world of automotive passion, exploring the thrill of speed, the elegance of design, and the stories behind every engine&apos;s roar. Join us on a journey of car love.</p>
+            </div>
         </div>
       </div>
 
@@ -42,8 +41,8 @@ function Home() {
           <img className="w-full h-40 object-cover object-center" src={dog} alt="Post 2" />
           <div className="p-6">
             <h2 className="text-lg font-semibold text-gray-800 mb-2">Dog love</h2>
-            <p className="text-gray-600">The human-dog relationship is a profound bond rooted in companionship, loyalty, and mutual understanding. It transcends language barriers, offering love, comfort, and unwavering support through life's highs and lows.</p>
-          </div>
+            <p className="text-gray-600">The human-dog relationship is a profound bond rooted in companionship, loyalty, and mutual understanding. It transcends language barriers, offering love, comfort, and unwavering support through life&apos;s highs and lows.</p>
+            </div>
         </div>
       </div>
 
@@ -52,8 +51,8 @@ function Home() {
           <img className="w-full h-40 object-cover object-center" src={mountain} alt="Post 3" />
           <div className="p-6">
             <h2 className="text-lg font-semibold text-gray-800 mb-2">Travelling in mountain</h2>
-            <p className="text-gray-600">Travelling in mountains offers exhilarating experiences, from breathtaking vistas to challenging trails. It's a journey of self-discovery , where every step reveals landscapes and unforgettable adventures.</p>
-          </div>
+            <p className="text-gray-600">Travelling in mountains offers exhilarating experiences, from breathtaking vistas to challenging trails. It&apos;s a journey of self-discovery, where every step reveals landscapes and unforgettable adventures.</p>
+            </div>
         </div>
       </div>
 

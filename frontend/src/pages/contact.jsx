@@ -1,4 +1,4 @@
-import React from 'react';
+
 import linkedin from '../assets/img/linkedin.png';
 import github from '../assets/img/github.png';
 import email from '../assets/img/gmail.png';

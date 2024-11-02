@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -9,7 +9,7 @@ import RTE from '../RTE';
 import Select from '../Select';
 
 export default function PostForm({ post }) {
-    const { register, handleSubmit, watch, setValue, control } = useForm({
+    const { register, handleSubmit,  control } = useForm({
         defaultValues: {
             title: post?.title || "",
             slug: post?.slug || "",

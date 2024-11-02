@@ -1,5 +1,3 @@
-// Add the google client id in the env varaibles to make the functionality working
-import React from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import Cookies from 'js-cookie';

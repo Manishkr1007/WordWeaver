@@ -1,4 +1,4 @@
-import React from "react";
+
 import { loaded } from "../../src/assets";
 import Lottie from "lottie-react";
 
