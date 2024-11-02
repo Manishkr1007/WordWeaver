@@ -10,18 +10,28 @@ import authService from './appwrite/auth'
 import Logo from "./components/Logo"
 import Loader from './components/Loader'
 
+import { useSelector } from 'react-redux';
+
+
 function App() {
-    const [loading, setLoading] = useState(true);
+      const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
+    const userData = useSelector((state) => state.auth.userData);
 
     useEffect(() => {
-        authService
-            .getCurrentUser()
-            .then((userData) => {
-                if (userData) dispatch(login({ userData }));
-                else dispatch(logout());
-            })
-            .finally(() => setLoading(false));
+        // Check if user data exists in localStorage
+        const storedUserData = localStorage.getItem('userData');
+        
+        if (storedUserData) {
+            // Parse user data and dispatch login
+            dispatch(login({ userData: JSON.parse(storedUserData) }));
+        } else {
+            // If not, logout any existing session
+            dispatch(logout());
+        }
+        console.log("in app",JSON.parse(storedUserData));
+        
+        setLoading(false);
     }, [dispatch]);
     useEffect(() => {
         // Check if the script is already in the document

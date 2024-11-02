@@ -1,6 +1,5 @@
-import { provider, auth, signInWithPopup } from "./firebase"; 
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState } from "react"; 
 import Button from "./Button";
 import Input from "./Input";
 import Logo from "./Logo";
@@ -8,10 +7,9 @@ import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
-import GoogleSignIn from '../utils/GoogleSignIn';
-
-
 import { login as authLogin } from "../store/authSlice";
+import axios from "axios";
+import { provider, auth, signInWithPopup } from "./Firebase"; 
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -25,40 +23,48 @@ function Login() {
     setError("");
     setLoading(true);
     try {
-      const session = await authService.login(data);
-      if (session) {
-        const userData = await authService.getCurrentUser();
-        if (userData) {
-          dispatch(authLogin({ userData }));
-          setLoading(false);
-          navigate("/");
-        }
+      const response = await axios.post(
+        `http://localhost:3000/auth/login`,
+        { email: data.email, password: data.password },
+        { withCredentials: true }
+      );
+
+      const { user, token } = response.data;
+      if (user) {
+        dispatch(authLogin({ userData: user, token }));
+        localStorage.setItem('userData', JSON.stringify(user));
+        setLoading(false);
+        navigate("/"); 
       }
     } catch (error) {
-      setError(error.message);
+      setError(error.response?.data?.message || "Login failed");
       setLoading(false);
     }
   };
 
-  // Google Sign-in
   const handleGoogleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
+  
       if (user) {
-        dispatch(authLogin({ userData: user }));
+        const response = await axios.post("http://localhost:3000/auth/google-login", {
+          email: user.email
+        });
+  
+        const userData = response.data;
+        localStorage.setItem('userData', JSON.stringify(userData));
+        dispatch(authLogin({ userData }));
         navigate("/");
       }
     } catch (error) {
-      setError(error.message);
+      console.error("Error during Google sign-in:", error.message);
     }
   };
 
   return (
     <div className="flex items-center justify-center w-full">
-      <div
-        className={`m-auto sm:w-full max-w-lg bg-gray-100 rounded-xl p-1 sm:p-10 border border-black/10`}
-      >
+      <div className={`m-auto sm:w-full max-w-lg bg-gray-100 rounded-xl p-1 sm:p-10 border border-black/10`}>
         <div className="mb-2 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
             <Logo width="100%" />
@@ -112,15 +118,13 @@ function Login() {
             >
               {loading ? "Logging in..." : "LogIn"}
             </Button>
-          <GoogleSignIn />
-
           </div>
         </form>
 
         {/* Google Sign-In Button */}
         <div className="flex justify-center mt-5">
           <Button
-            type="button"
+            type="button" // Make sure this button has type "button"
             className="flex items-center w-full justify-center space-x-2 border border-gray-300 p-3 rounded-md hover:bg-gray-200 transition-all"
             onClick={handleGoogleSignIn}
           >

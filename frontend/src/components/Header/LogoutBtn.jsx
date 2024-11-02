@@ -7,9 +7,15 @@ function LogoutBtn() {
     const dispatch = useDispatch()
 
     const lougoutHandler = () => {
-        authService.logout().then(() => {
-            dispatch(logout());
-        })
+        
+        localStorage.removeItem('userData');
+    
+        // Dispatch logout action to Redux
+        dispatch(logout());
+    
+        // Optionally, redirect the user to the login page or home page
+        navigate('/login'); // Or wherever you want to redirect
+    
     }
   return (
     <button
