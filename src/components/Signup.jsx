@@ -1,20 +1,15 @@
-import { provider, auth, signInWithPopup } from "./firebase"; 
 import { Link, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "./Button";
 import Input from "./Input";
 import { AiFillEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
-
-import GoogleSignIn from '../utils/GoogleSignIn';
-
-import { FcGoogle } from "react-icons/fc"; 
-
-
+import { FcGoogle } from "react-icons/fc";
 import Logo from "./Logo";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { login } from "../store/authSlice";
+import authService from "../appwrite/auth";
+import GoogleSignIn from "../utils/GoogleSignIn";
 
 function Signup() {
   const navigate = useNavigate();
@@ -26,27 +21,29 @@ function Signup() {
 
   const create = async (data) => {
     setError("");
+    setLoading(true);
     try {
       const userData = await authService.createAccount(data);
       if (userData) {
-        const userData = await authService.getCurrentUser();
-        if (userData) dispatch(login({ userData }));
-        navigate("/");
+        const currentUser = await authService.getCurrentUser();
+        if (currentUser) {
+          dispatch(login({ userData: currentUser }));
+          navigate("/");
+        }
       }
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Google Sign-in
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignIn = async (response) => {
     try {
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      if (user) {
-        dispatch(login({ userData: user }));
-        navigate("/");
-      }
+      const { credential } = response;
+      const userData = await authService.signInWithGoogle(credential);
+      dispatch(login({ userData }));
+      navigate("/");
     } catch (error) {
       setError(error.message);
     }
@@ -122,22 +119,24 @@ function Signup() {
             >
               {loading ? "Signing up..." : "Sign Up"}
             </Button>
-
-          <GoogleSignIn />
-
           </div>
         </form>
-
-        {/* Google Sign-In Button */}
         <div className="flex justify-center mt-5">
-          <Button
-            type="button"
-            className="flex items-center w-full justify-center space-x-2 border border-gray-300 p-3 rounded-md hover:bg-gray-200 transition-all"
-            onClick={handleGoogleSignIn}
+          <GoogleLogin
+            onSuccess={handleGoogleSignIn}
+            onError={(error) => {
+              console.error("Google Sign-In Error:", error);
+              setError("Google Sign-In failed. Please try again.");
+            }}
           >
-            <FcGoogle className="text-xl" />
-            <span>Sign Up with Google</span>
-          </Button>
+            <Button
+              type="button"
+              className="flex items-center w-full justify-center space-x-2 border border-gray-300 p-3 rounded-md hover:bg-gray-200 transition-all"
+            >
+              <FcGoogle className="text-xl" />
+              <span>Sign Up with Google</span>
+            </Button>
+          </GoogleLogin>
         </div>
       </div>
     </div>
